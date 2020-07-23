@@ -1,0 +1,33 @@
+[
+  {
+    "parent": 0,
+    "id": 1,
+    "children": [2, 3],
+    "operator": "OR",
+    "type": "node",
+    "leftOperand": { "type": "node", "value": "state_province_region = oregon" },
+    "rightOperand": { "type": "node", "value": "age < 10" }
+  },
+  {
+    "parent": 1,
+    "id": 2,
+    "children": null,
+    "operator": "=",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "value": "state_province_region",
+      "fieldType": "text"
+    },
+    "rightOperand": { "type": "value", "value": "oregon" }
+  },
+  {
+    "parent": 1,
+    "id": 3,
+    "children": null,
+    "operator": "<",
+    "type": "node",
+    "leftOperand": { "type": "identifier", "value": "age", "fieldType": "number" },
+    "rightOperand": { "type": "value", "value": "10" }
+  }
+]

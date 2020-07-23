@@ -1,0 +1,435 @@
+[
+  {
+    "parent": 0,
+    "id": 1,
+    "children": [2, 55],
+    "operator": "AND",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "(((((((event_source = \"mail\") AND (\"event_data:payload.unique_args.mc_auto_id\" = \"abcd2343a-f17d-11e7-8030-0242ac170defg\")) AND (\"event_data:payload.unique_args.mc_auto_step_id\" = \"auto-step-id-2\")) AND (event_type = \"click\")) AND (event_timestamp > (NOW() - INTERVAL 1 DAY))) AND (((first_name = \"Se\") OR (last_name LIKE \"%asdf%\")) OR (email LIKE \"%asdf%\"))) AND (((signup_date > (now() - INTERVAL 4 DAY)) OR (signup_date < (now() - INTERVAL 70 DAY))) OR ((signup_date < TIMESTAMP 2019-09-02T18:00:00Z) OR (signup_date > TIMESTAMP 2019-09-06T08:35:00Z))))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(email LIKE \"%gmail%\")"
+    }
+  },
+  {
+    "parent": 1,
+    "id": 2,
+    "children": [3, 36],
+    "operator": "AND",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "((((((event_source = \"mail\") AND (\"event_data:payload.unique_args.mc_auto_id\" = \"abcd2343a-f17d-11e7-8030-0242ac170defg\")) AND (\"event_data:payload.unique_args.mc_auto_step_id\" = \"auto-step-id-2\")) AND (event_type = \"click\")) AND (event_timestamp > (NOW() - INTERVAL 1 DAY))) AND (((first_name = \"Se\") OR (last_name LIKE \"%asdf%\")) OR (email LIKE \"%asdf%\")))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(((signup_date > (now() - INTERVAL 4 DAY)) OR (signup_date < (now() - INTERVAL 70 DAY))) OR ((signup_date < TIMESTAMP 2019-09-02T18:00:00Z) OR (signup_date > TIMESTAMP 2019-09-06T08:35:00Z)))"
+    }
+  },
+  {
+    "parent": 2,
+    "id": 3,
+    "children": [4, 25],
+    "operator": "AND",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "(((((event_source = \"mail\") AND (\"event_data:payload.unique_args.mc_auto_id\" = \"abcd2343a-f17d-11e7-8030-0242ac170defg\")) AND (\"event_data:payload.unique_args.mc_auto_step_id\" = \"auto-step-id-2\")) AND (event_type = \"click\")) AND (event_timestamp > (NOW() - INTERVAL 1 DAY)))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(((first_name = \"Se\") OR (last_name LIKE \"%asdf%\")) OR (email LIKE \"%asdf%\"))"
+    }
+  },
+  {
+    "parent": 3,
+    "id": 4,
+    "children": [5, 20],
+    "operator": "AND",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "((((event_source = \"mail\") AND (\"event_data:payload.unique_args.mc_auto_id\" = \"abcd2343a-f17d-11e7-8030-0242ac170defg\")) AND (\"event_data:payload.unique_args.mc_auto_step_id\" = \"auto-step-id-2\")) AND (event_type = \"click\"))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(event_timestamp > (NOW() - INTERVAL 1 DAY))"
+    }
+  },
+  {
+    "parent": 4,
+    "id": 5,
+    "children": [6, 17],
+    "operator": "AND",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "(((event_source = \"mail\") AND (\"event_data:payload.unique_args.mc_auto_id\" = \"abcd2343a-f17d-11e7-8030-0242ac170defg\")) AND (\"event_data:payload.unique_args.mc_auto_step_id\" = \"auto-step-id-2\"))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(event_type = \"click\")"
+    }
+  },
+  {
+    "parent": 5,
+    "id": 6,
+    "children": [7, 14],
+    "operator": "AND",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "((event_source = \"mail\") AND (\"event_data:payload.unique_args.mc_auto_id\" = \"abcd2343a-f17d-11e7-8030-0242ac170defg\"))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(\"event_data:payload.unique_args.mc_auto_step_id\" = \"auto-step-id-2\")"
+    }
+  },
+  {
+    "parent": 6,
+    "id": 7,
+    "children": [8, 11],
+    "operator": "AND",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "(event_source = \"mail\")"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(\"event_data:payload.unique_args.mc_auto_id\" = \"abcd2343a-f17d-11e7-8030-0242ac170defg\")"
+    }
+  },
+  {
+    "parent": 7,
+    "id": 8,
+    "children": null,
+    "operator": "=",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "event_source"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "mail"
+    }
+  },
+  {
+    "parent": 7,
+    "id": 11,
+    "children": null,
+    "operator": "=",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "\"event_data:payload.unique_args.mc_auto_id\""
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "abcd2343a-f17d-11e7-8030-0242ac170defg"
+    }
+  },
+  {
+    "parent": 6,
+    "id": 14,
+    "children": null,
+    "operator": "=",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "\"event_data:payload.unique_args.mc_auto_step_id\""
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "auto-step-id-2"
+    }
+  },
+  {
+    "parent": 5,
+    "id": 17,
+    "children": null,
+    "operator": "=",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "event_type"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "click"
+    }
+  },
+  {
+    "parent": 4,
+    "id": 20,
+    "children": [22],
+    "operator": ">",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "date",
+      "value": "event_timestamp"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(NOW() - INTERVAL 1 DAY)"
+    }
+  },
+  {
+    "parent": 20,
+    "id": 22,
+    "children": null,
+    "operator": "-",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "value": "NOW()"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "INTERVAL 1 DAY"
+    }
+  },
+  {
+    "parent": 3,
+    "id": 25,
+    "children": [26, 33],
+    "operator": "OR",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "((first_name = \"Se\") OR (last_name LIKE \"%asdf%\"))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(email LIKE \"%asdf%\")"
+    }
+  },
+  {
+    "parent": 25,
+    "id": 26,
+    "children": [27, 30],
+    "operator": "OR",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "(first_name = \"Se\")"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(last_name LIKE \"%asdf%\")"
+    }
+  },
+  {
+    "parent": 26,
+    "id": 27,
+    "children": null,
+    "operator": "=",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "first_name"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "Se"
+    }
+  },
+  {
+    "parent": 26,
+    "id": 30,
+    "children": null,
+    "operator": "LIKE",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "last_name"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "%asdf%"
+    }
+  },
+  {
+    "parent": 25,
+    "id": 33,
+    "children": null,
+    "operator": "LIKE",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "email"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "%asdf%"
+    }
+  },
+  {
+    "parent": 2,
+    "id": 36,
+    "children": [37, 48],
+    "operator": "OR",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "((signup_date > (now() - INTERVAL 4 DAY)) OR (signup_date < (now() - INTERVAL 70 DAY)))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "((signup_date < TIMESTAMP 2019-09-02T18:00:00Z) OR (signup_date > TIMESTAMP 2019-09-06T08:35:00Z))"
+    }
+  },
+  {
+    "parent": 36,
+    "id": 37,
+    "children": [38, 43],
+    "operator": "OR",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "(signup_date > (now() - INTERVAL 4 DAY))"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(signup_date < (now() - INTERVAL 70 DAY))"
+    }
+  },
+  {
+    "parent": 37,
+    "id": 38,
+    "children": [40],
+    "operator": ">",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "date",
+      "value": "signup_date"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(now() - INTERVAL 4 DAY)"
+    }
+  },
+  {
+    "parent": 38,
+    "id": 40,
+    "children": null,
+    "operator": "-",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "value": "now()"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "INTERVAL 4 DAY"
+    }
+  },
+  {
+    "parent": 37,
+    "id": 43,
+    "children": [45],
+    "operator": "<",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "date",
+      "value": "signup_date"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(now() - INTERVAL 70 DAY)"
+    }
+  },
+  {
+    "parent": 43,
+    "id": 45,
+    "children": null,
+    "operator": "-",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "value": "now()"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "INTERVAL 70 DAY"
+    }
+  },
+  {
+    "parent": 36,
+    "id": 48,
+    "children": [49, 52],
+    "operator": "OR",
+    "type": "node",
+    "leftOperand": {
+      "type": "node",
+      "value": "(signup_date < TIMESTAMP 2019-09-02T18:00:00Z)"
+    },
+    "rightOperand": {
+      "type": "node",
+      "value": "(signup_date > TIMESTAMP 2019-09-06T08:35:00Z)"
+    }
+  },
+  {
+    "parent": 48,
+    "id": 49,
+    "children": null,
+    "operator": "<",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "date",
+      "value": "signup_date"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "TIMESTAMP 2019-09-02T18:00:00Z"
+    }
+  },
+  {
+    "parent": 48,
+    "id": 52,
+    "children": null,
+    "operator": ">",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "date",
+      "value": "signup_date"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "TIMESTAMP 2019-09-06T08:35:00Z"
+    }
+  },
+  {
+    "parent": 1,
+    "id": 55,
+    "children": null,
+    "operator": "LIKE",
+    "type": "node",
+    "leftOperand": {
+      "type": "identifier",
+      "fieldType": "text",
+      "value": "email"
+    },
+    "rightOperand": {
+      "type": "value",
+      "value": "%gmail%"
+    }
+  }
+]
