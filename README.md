@@ -3,3 +3,9 @@
 ![Bob Ross](./BobRossHappyLittleTrees.jpg)
 
 Represent Segment ASTs with some Happy Little Trees!
+
+Start:
+
+```
+gatsby develop
+```

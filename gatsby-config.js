@@ -5,6 +5,8 @@ module.exports = {
     author: `Stuart Reed`,
   },
   plugins: [
+    `gatsby-plugin-less`,
+    `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
