@@ -5,16 +5,14 @@ import { TextInput } from "@sendgrid/ui-components/text-input"
 
 import Layout from "../components/layout"
 import { graph } from "../utils/graph/graph"
+import { SEGMENTS_API, AUTH_TOKEN } from "./creds"
 
 // Pick JSON file to load from content dir
 // import astJson from "../../content/ast.json"
 // import astJson from "../../content/complexAst.json"
 
-const URL = ""
-const AUTH_TOKEN = ""
-
 async function fetchSegment(segmentId) {
-  return await fetch(`${URL}/${segmentId}?query_json=true`, {
+  return await fetch(`${SEGMENTS_API}/${segmentId}?query_json=true`, {
     headers: {
       authorization: AUTH_TOKEN,
     },
