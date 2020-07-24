@@ -1,7 +1,6 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef } from "react"
 import * as d3 from "d3"
 import "d3-graphviz"
-import { trim } from "lodash"
 import "@hpcc-js/wasm";
 
 import Layout from "../components/layout"
@@ -35,7 +34,7 @@ const graph = (currentContainer) => {
   let current = 0,
     N = data.descendants().length;
 
-  const graphviz = d3.select(currentContainer).graphviz();
+  const graphviz = d3.select(currentContainer).graphviz({ width: window.innerWidth - 40 });
 
   const draw = (node) => {
     const graph = digraph(
@@ -117,6 +116,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
+      <script src="@hpcc-js/wasm/dist/index.min.js" type="javascript/worker"/>
       <div id="graph" ref={container}></div>
     </Layout>
   );
