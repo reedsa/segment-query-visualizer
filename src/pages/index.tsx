@@ -117,7 +117,6 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <h1>Segment AST</h1>
       <div id="graph" ref={container}></div>
     </Layout>
   );
