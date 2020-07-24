@@ -1,6 +1,8 @@
-import React, { useEffect, useRef } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import * as d3 from "d3"
-import dot from "@observablehq/graphviz"
+import "d3-graphviz"
+import { trim } from "lodash"
+import "@hpcc-js/wasm";
 
 import Layout from "../components/layout"
 // import astJson from "../../content/ast.json"
@@ -12,11 +14,18 @@ import { getOrder } from "../traversal/getOrder"
 //   description: "Graph traversal method"
 // })
 
+const escapeHtml = (unsafe) => unsafe
+  .replace(/&/g, "&amp;")
+  .replace(/</g, "&lt;")
+  .replace(/>/g, "&gt;")
+  .replace(/"/g, "&quot;")
+  .replace(/'/g, "&#039;");
+
 const traverseOrder = getOrder(astJson);
 
 const ast = astJson.map(node => ({
   ...node,
-  id: `${node.id}`,
+  id: node.id,
   parentId: node.parent !== 0 ? `${node.parent}` : "",
 }));
 const data = d3.stratify()(ast)
@@ -26,32 +35,40 @@ const graph = (currentContainer) => {
   let current = 0,
     N = data.descendants().length;
 
-  const svg = d3.select(currentContainer);
-  const view = svg.append("div").style("user-select", "none");
+  const graphviz = d3.select(currentContainer).graphviz();
 
   const draw = (node) => {
-    view
-      .html("")
-      .node()
-      .appendChild(
-        digraph(
-          data.copy()["each"](d => {
-            let nodeLabel;
-            if (d.data.leftOperand.type === 'identifier') {
-              nodeLabel = `\n${escape(d.data.leftOperand.value)}\n${d.data.operator}\n${d.data.rightOperand.value}`;
-            } else {
-              nodeLabel = d.data.operator;
-            }
+    const graph = digraph(
+      data.copy()["each"](d => {
+        let nodeLabel;
+        if (d.data.leftOperand.type === 'identifier') {
+          const {
+            leftOperand: { value: nodeLeftOperandValue },
+            rightOperand: { value: nodeRightOperandValue },
+            operator: nodeOperator
+          } = d.data;
+          
+          nodeLabel = escapeHtml(`${nodeLeftOperandValue} ${nodeOperator} "${nodeRightOperandValue}"`);
+        } else {
+          nodeLabel = escapeHtml(d.data.operator);
+        }
 
-            d.label = `${d.data.id}\n${nodeLabel}`;
-            d.style = parseInt(d.data.id, 10) === current ? "filled" : "";
-            return d;
-          })
-        )
-      );
+        const selectedNode = d.data.id === current;
+        d.label = `${d.data.id} | ${nodeLabel}`;
+        d.style = selectedNode ? "filled" : "filled";
+        d.fillcolor = selectedNode ? "#009dd9" : "#99e1f4";
+        return d;
+      })
+    );
+
+    graphviz.renderDot(graph).on("end", interactive);
   }
 
-  // const increment = () => draw((current = ++current % N));
+  const interactive = () => {
+    d3.selectAll(".node,.edge").on("click", increment);
+    d3.select(document.body).on("keyup", increment);
+  }
+
   const increment = () => {
     ++traverseIndex;
     if (traverseIndex > traverseOrder.length - 1) {
@@ -60,25 +77,21 @@ const graph = (currentContainer) => {
     current = traverseOrder[traverseIndex];
     draw();
   }
-  view.on("click", increment);
-  // d3.select(document.body).on("keyup", increment);
 
   current = traverseOrder[traverseIndex];
   draw();
-debugger;
-  return view.node();
 };
 
 const digraph = (hierarchy) => {
   const id = new Map(hierarchy.descendants().map((node, i) => [node, i]));
-  return dot`digraph {
+  return `digraph {
   rankdir = TB;
-  node [shape="rectangle" fontname="var(--sans-serif)" fontsize=12];
+  node [shape="record" fontname="Arial" fontsize="8"];
   ${hierarchy
     .descendants()
     .map(
       node =>
-        `"${id.get(node)}" [label="${node.label}"] [style="${node.style}"]`
+        `"${id.get(node)}" [label="${node.label}"] [style="${node.style}"] [fillcolor="${node.fillcolor}"]`
     )
     .join("; ")}
   ${hierarchy
@@ -105,7 +118,7 @@ const IndexPage = () => {
   return (
     <Layout>
       <h1>Segment AST</h1>
-      <div ref={container}></div>
+      <div id="graph" ref={container}></div>
     </Layout>
   );
 }
